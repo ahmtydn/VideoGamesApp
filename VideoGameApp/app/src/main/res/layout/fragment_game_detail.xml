@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GameDetailFragment"
+    android:weightSum="5">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="2">
+    <ImageView
+        android:id="@+id/imageViewgamedetay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srcCompat="@drawable/ic_launcher_background"
+        >
+    </ImageView>
+    <ImageButton
+        android:layout_width="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_action_like"
+        android:background="@android:color/transparent"
+        >
+    </ImageButton>
+</RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.2"
+        android:layout_marginStart="10dp"
+        android:text="Name Of Game"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        >
+    </TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.17"
+        android:layout_marginStart="10dp"
+        android:text="Release Date"
+        android:textSize="15sp"
+        android:textStyle="normal"
+        android:textColor="@color/gri"
+        >
+    </TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.2"
+        android:layout_marginStart="10dp"
+        android:text="Metacritic Rate"
+        android:textSize="15sp"
+        android:textStyle="normal"
+        android:textColor="@color/gri"
+        >
+    </TextView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2.03"
+        android:text="Game Description"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:textSize="15sp"
+        android:textStyle="normal"
+        android:textColor="@color/gri"
+        >
+    </TextView>
+
+
+</LinearLayout>
