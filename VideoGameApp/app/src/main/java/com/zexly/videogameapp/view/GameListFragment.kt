@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zexly.videogameapp.R
 import com.zexly.videogameapp.adapter.GameRecyclerAdapter
+import com.zexly.videogameapp.model.GamesJSON
 import com.zexly.videogameapp.viewmodel.GameListViewModel
 import kotlinx.android.synthetic.main.fragment_game_list.*
 
@@ -17,6 +18,7 @@ import kotlinx.android.synthetic.main.fragment_game_list.*
 class GameListFragment : Fragment() {
 
     private lateinit var gameListesiViewModel:GameListViewModel
+
     private val recyclerGameAdapter=GameRecyclerAdapter(arrayListOf())
 
 
@@ -48,9 +50,10 @@ class GameListFragment : Fragment() {
     fun observeLiveData(){
         gameListesiViewModel.games.observe(viewLifecycleOwner, Observer { games->
             games?.let {
-
                 gameListrcyclerview.visibility=View.VISIBLE
-                recyclerGameAdapter.gameListesiniGuncelle(games)
+                viewpagerId.visibility=View.VISIBLE
+                serchbarId.visibility=View.VISIBLE
+                recyclerGameAdapter.gameListesiniGuncelle(it)
             }
         })
 

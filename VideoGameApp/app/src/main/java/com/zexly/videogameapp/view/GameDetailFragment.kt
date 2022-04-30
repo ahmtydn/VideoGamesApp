@@ -28,29 +28,28 @@ class GameDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-       viewModel=ViewModelProviders.of(this).get(GameDetailViewModel::class.java)
-       viewModel.roomVerisiniAl()
-
         arguments?.let {
+
             gameId=GameDetailFragmentArgs.fromBundle(it).gameID
             println(gameId)
         }
+       viewModel=ViewModelProviders.of(this).get(GameDetailViewModel::class.java)
+        viewModel.verileriInternettenAl(gameId)
 
-        //observeLiveData()
+        observeLiveData(gameId)
     }
 
-    /*fun observeLiveData(){
-
-        viewModel.gameLiveData.observe(viewLifecycleOwner, Observer { games->
+    fun observeLiveData(id:Int){
+        println("İD: ${id}")
+        viewModel.gamesDetail.observe(viewLifecycleOwner, Observer { games->
             games?.let {
-
-                gameIsım.text=it.GameIsim
-                gameDescription.text=it.GameDescription
-                gameMetacritic.text=it.GameMetacritic.toString()
-                gameRelease.text=it.GameReleased
+                println("${it.get(id).name}uygulandı")
+                gameIsım.text=it.get(id).name
+                gameDescription.text=it.get(id).description
+                gameMetacritic.text=it.get(id).metacritic.toString()
+                gameRelease.text=it.get(id).released
 
             }
         })
-    }*/
+    }
 }

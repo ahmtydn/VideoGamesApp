@@ -6,11 +6,14 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.zexly.videogameapp.R
-import com.zexly.videogameapp.model.Game
+import com.zexly.videogameapp.model.GamesJSON
+import com.zexly.videogameapp.model.Result
+import com.zexly.videogameapp.util.gorselIndir
+import com.zexly.videogameapp.util.placeholderYap
 import com.zexly.videogameapp.view.GameListFragmentDirections
 import kotlinx.android.synthetic.main.game_list_recycler_row.view.*
 
-class GameRecyclerAdapter(val gameListesi:ArrayList<Game>):RecyclerView.Adapter<GameRecyclerAdapter.GameViewHolder>() {
+class GameRecyclerAdapter(val gameListesi:ArrayList<Result>):RecyclerView.Adapter<GameRecyclerAdapter.GameViewHolder>() {
 
     class GameViewHolder(itemView:View):RecyclerView.ViewHolder(itemView){
 
@@ -24,12 +27,12 @@ class GameRecyclerAdapter(val gameListesi:ArrayList<Game>):RecyclerView.Adapter<
     }
 
     override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
-        holder.itemView.gameisim.text=gameListesi.get(position).GameIsim
-        holder.itemView.gameRankedRlsd.text=gameListesi.get(position).GameReleased
-        //görsel eklenecek
+        holder.itemView.gameisim.text=gameListesi.get(position).name
+        holder.itemView.gameRankedRlsd.text=gameListesi.get(position).released
+        holder.itemView.imageID.gorselIndir(gameListesi.get(position).backgroundImage,placeholderYap(holder.itemView.context))
 
         holder.itemView.setOnClickListener {
-            val action=GameListFragmentDirections.actionGameListFragmentToGameDetailFragment2(0)
+            val action=GameListFragmentDirections.actionGameListFragmentToGameDetailFragment2(gameListesi.get(position).id)
             Navigation.findNavController(it).navigate(action)
         }
     }
@@ -38,10 +41,10 @@ class GameRecyclerAdapter(val gameListesi:ArrayList<Game>):RecyclerView.Adapter<
         return gameListesi.size
     }
 
-    fun gameListesiniGuncelle(yeniGameListesi:List<Game>){
+    fun gameListesiniGuncelle(yeniGameListesi:GamesJSON){
         gameListesi.clear()
-        gameListesi.addAll(yeniGameListesi)
+        gameListesi.addAll(yeniGameListesi.results)
         notifyDataSetChanged()
-
     }
+
 }

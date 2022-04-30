@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.zexly.videogameapp.R
-import com.zexly.videogameapp.model.Game
 
 class MainActivity : AppCompatActivity() {
 

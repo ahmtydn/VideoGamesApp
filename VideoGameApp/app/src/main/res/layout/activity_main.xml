@@ -10,7 +10,7 @@
     android:background="@color/white"
     tools:context=".view.MainActivity">
 
-        <fragment
+        <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainerView"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_weight="0.92"
