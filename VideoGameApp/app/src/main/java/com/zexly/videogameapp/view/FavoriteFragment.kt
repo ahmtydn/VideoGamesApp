@@ -1,16 +1,17 @@
-package com.zexly.videogameapp
+package com.zexly.videogameapp.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.zexly.videogameapp.R
 
-class GameDetailFragment : Fragment() {
-
+class FavoriteFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
     }
 
     override fun onCreateView(
@@ -18,6 +19,7 @@ class GameDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_game_detail, container, false)
+        return inflater.inflate(R.layout.fragment_favorite, container, false)
     }
+
 }
