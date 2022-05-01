@@ -10,6 +10,8 @@ import com.zexly.videogameapp.model.GamesJSON
 import com.zexly.videogameapp.model.Result
 import com.zexly.videogameapp.util.gorselIndir
 import com.zexly.videogameapp.util.placeholderYap
+import com.zexly.videogameapp.view.FavoriteFragment
+import com.zexly.videogameapp.view.FavoriteFragmentDirections
 import com.zexly.videogameapp.view.GameListFragmentDirections
 import kotlinx.android.synthetic.main.game_list_recycler_row.view.*
 
@@ -32,7 +34,7 @@ class GameFavoriRecyclerAdapter(val gameListesi:ArrayList<Result>): RecyclerView
             placeholderYap(holder.itemView.context)
         )
         holder.itemView.setOnClickListener {
-            val action= GameListFragmentDirections.actionGameListFragmentToGameDetailFragment2(gameListesi.get(position).id)
+            val action= FavoriteFragmentDirections.actionFavoriteFragmentToGameDetailFragment2(gameListesi.get(position).id)
             Navigation.findNavController(it).navigate(action)
     }
     }

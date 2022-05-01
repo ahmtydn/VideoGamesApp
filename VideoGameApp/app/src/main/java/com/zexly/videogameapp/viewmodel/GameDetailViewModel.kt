@@ -17,9 +17,7 @@ import kotlinx.coroutines.launch
 
 class GameDetailViewModel(application: Application):BaseViewModel(application) {
 
-
     val gamesDetail=MutableLiveData<GameDetailJSon>()
-    var favoriValue=MutableLiveData<List<Result>>()
 
     val detailhatamesajTV=MutableLiveData<Boolean>()
     val detailprogressBarId=MutableLiveData<Boolean>()

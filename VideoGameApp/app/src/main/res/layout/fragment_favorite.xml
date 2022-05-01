@@ -8,10 +8,32 @@
     tools:context=".view.FavoriteFragment"
     android:weightSum="1">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.06"
+        android:background="@color/gri"
+        android:text="Favori Oyunlar"
+        android:textColor="#104DB5"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        >
+
+    </TextView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.02"
+        android:background="@color/white"
+        >
+
+    </TextView>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favoriRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="0.88"
         />
 </LinearLayout>

@@ -24,6 +24,8 @@
         android:id="@+id/viewpagerId"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
         android:layout_weight="0.3"
         android:contentDescription="@string/app_name"
         android:foreground="@drawable/ic_launcher_background"

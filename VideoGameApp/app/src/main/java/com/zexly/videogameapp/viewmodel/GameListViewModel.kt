@@ -16,7 +16,6 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.launch
 
 class GameListViewModel(application: Application):BaseViewModel(application) {
-    val games=MutableLiveData<GamesJSON>()
     val gamesResult=MutableLiveData<List<Result>>()
     private val guncellemeZamani=10*60*1000*1000*1000L
     private val ozelSharedPreferences= OzelSharedPreferences(getApplication())
@@ -88,13 +87,14 @@ class GameListViewModel(application: Application):BaseViewModel(application) {
             while (i<gameListesi.size)
             {
                 gameListesi[i].uuid=uuidListesi[i].toInt()
-                println(gameListesi[i].uuid)
                 i=i+1
                 gamesGoster(gameListesi)
             }
         }
 
+
         ozelSharedPreferences.zamaniKaydet(System.nanoTime())
     }
+
 
 }
