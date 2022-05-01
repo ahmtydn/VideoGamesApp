@@ -9,26 +9,32 @@
     tools:context=".view.GameDetailFragment"
     android:weightSum="5">
 <RelativeLayout
+    android:id="@+id/detayRelativeLayout"
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:layout_weight="2">
+
     <ImageView
         android:id="@+id/imageViewgamedetay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:srcCompat="@drawable/ic_launcher_background"
-        >
+        app:srcCompat="@drawable/ic_launcher_background">
+
     </ImageView>
+
     <ImageButton
-        android:layout_width="50dp"
         android:id="@+id/fallowIBId"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_height="50dp"
-        android:src="@drawable/ic_action_like"
         android:background="@android:color/transparent"
-        >
+        android:src="@drawable/ic_action_like"
+        tools:ignore="SpeakableTextPresentCheck">
+
     </ImageButton>
+
+
 </RelativeLayout>
 
     <TextView
@@ -68,20 +74,61 @@
         android:textColor="@color/gri"
         >
     </TextView>
-
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2.43"
-        android:text="Game Description"
-        android:id="@+id/gameDescription"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:textSize="15sp"
-        android:textStyle="normal"
-        android:textColor="@color/gri"
-        >
-    </TextView>
+        android:layout_weight="2.43">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hata oluştu!"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/detailhatamesajTV"
+            android:textColor="#EA0F0F"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </TextView>
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:id="@+id/detailprogressBarId"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            >
+
+        </ProgressBar>
+
+
+        <TextView
+            android:scrollbars = "vertical"
+            android:id="@+id/gameDetailDescription"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:text="Game Description"
+            android:textColor="@color/gri"
+            android:textSize="15sp"
+            android:textStyle="normal">
+
+        </TextView>
+
+
+    </RelativeLayout>
+
 
 
 </LinearLayout>

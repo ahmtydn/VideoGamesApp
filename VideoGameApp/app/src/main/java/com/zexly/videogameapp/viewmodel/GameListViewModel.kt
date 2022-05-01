@@ -35,12 +35,10 @@ class GameListViewModel(application: Application):BaseViewModel(application) {
                 override fun onSuccess(t: GamesJSON) {
                    gameView(t)
                 }
-
                 override fun onError(e: Throwable) {
                     hataMesaji.value=true
                     gameYukleniyor.value=false
                 }
-
 
             })
         )

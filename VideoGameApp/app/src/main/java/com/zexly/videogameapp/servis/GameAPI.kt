@@ -19,9 +19,7 @@ interface GameAPI {
     @GET("/api/games/{id}?key=bf04d7cb269340eab8979a03b76528e7")
     fun getGamesDetail(
         @Path("id") id:Int
-    ):Single<List<GameDetailJSon>>
-
-
+    ):Single<GameDetailJSon>
 
     //https://api.rawg.io/api/games/3498?key=bf04d7cb269340eab8979a03b76528e7
 }

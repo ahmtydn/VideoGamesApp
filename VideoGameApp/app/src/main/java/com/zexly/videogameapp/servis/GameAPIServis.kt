@@ -23,7 +23,7 @@ class GameAPIServis {
         return api.getGames()
     }
 
-    fun getDataDetail(id:Int):Single<List<GameDetailJSon>>{
+    fun getDataDetail(id:Int):Single<GameDetailJSon>{
         return api.getGamesDetail(id)
     }
 

@@ -31,6 +31,8 @@ class GameRecyclerAdapter(val gameListesi:ArrayList<Result>):RecyclerView.Adapte
         holder.itemView.gameRankedRlsd.text=gameListesi.get(position).released
         holder.itemView.imageID.gorselIndir(gameListesi.get(position).backgroundImage,placeholderYap(holder.itemView.context))
 
+
+
         holder.itemView.setOnClickListener {
             val action=GameListFragmentDirections.actionGameListFragmentToGameDetailFragment2(gameListesi.get(position).id)
             Navigation.findNavController(it).navigate(action)
@@ -46,5 +48,7 @@ class GameRecyclerAdapter(val gameListesi:ArrayList<Result>):RecyclerView.Adapte
         gameListesi.addAll(yeniGameListesi.results)
         notifyDataSetChanged()
     }
+
+
 
 }

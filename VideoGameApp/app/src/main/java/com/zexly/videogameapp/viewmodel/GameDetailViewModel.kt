@@ -14,39 +14,37 @@ import io.reactivex.schedulers.Schedulers
 class GameDetailViewModel:ViewModel() {
 
 
-    val gamesDetail=MutableLiveData<List<GameDetailJSon>>()
+    val gamesDetail=MutableLiveData<GameDetailJSon>()
 
-    val hataMesaji=MutableLiveData<Boolean>()
-    val gameYukleniyor=MutableLiveData<Boolean>()
+    val detailhatamesajTV=MutableLiveData<Boolean>()
+    val detailprogressBarId=MutableLiveData<Boolean>()
 
     private val gameApiServis= GameAPIServis()
     private val disposable= CompositeDisposable()
 
     fun verileriInternettenAl(id:Int){
-        gameYukleniyor.value=true
+        detailprogressBarId.value=true
         disposable.add(
             gameApiServis.getDataDetail(id)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableSingleObserver<List<GameDetailJSon>>(){
-                    override fun onSuccess(t: List<GameDetailJSon>) {
-
-                        println("${t.get(id).name}uygulandı")
+                .subscribeWith(object : DisposableSingleObserver<GameDetailJSon>(){
+                    override fun onSuccess(t: GameDetailJSon) {
                         gameView(t)
                     }
                     override fun onError(e: Throwable) {
-                        hataMesaji.value=true
-                        gameYukleniyor.value=false
+                        detailhatamesajTV.value=true
+                        detailprogressBarId.value=false
+                        e.printStackTrace()
                     }
-
                 })
         )
     }
 
-    private fun gameView(gameDetail:List<GameDetailJSon>){
+    private fun gameView(gameDetail:GameDetailJSon){
         gamesDetail.value=gameDetail
-        hataMesaji.value=false
-        gameYukleniyor.value=false
+        detailhatamesajTV.value=false
+        detailprogressBarId.value=false
 
     }
 }
