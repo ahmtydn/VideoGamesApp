@@ -40,12 +40,11 @@ class GameListFragment : Fragment() {
 
         gameListesiViewModel=ViewModelProviders.of(this).get(GameListViewModel::class.java)
         gameListesiViewModel.refreshData()
-
         gameListrcyclerview.layoutManager=LinearLayoutManager(context)
         gameListrcyclerview.adapter=recyclerGameAdapter
 
-
-        observeLiveData()
+        //observeLiveData()
+        observeLiveDataResault()
     }
 
     fun observeLiveData(){
@@ -57,6 +56,64 @@ class GameListFragment : Fragment() {
                 recyclerGameAdapter.gameListesiniGuncelle(it)
             }
         })
+
+
+            gameListesiViewModel.hataMesaji.observe(viewLifecycleOwner, Observer { hata->
+            hata?.let {
+
+                if (it)
+                {
+                    hatamesajTV.visibility=View.VISIBLE
+                    gameListrcyclerview.visibility=View.GONE
+                    progressBarId.visibility=View.GONE
+                    viewpagerId.visibility=View.GONE
+                    serchbarId.visibility=View.GONE
+
+                }
+                else{
+                    hatamesajTV.visibility=View.GONE
+                }
+
+            }
+        })
+
+        gameListesiViewModel.gameYukleniyor.observe(viewLifecycleOwner, Observer { yukleniyor->
+
+            yukleniyor?.let {
+                if (it){
+                    gameListrcyclerview.visibility=View.GONE
+                    hatamesajTV.visibility=View.GONE
+                    progressBarId.visibility=View.VISIBLE
+                    viewpagerId.visibility=View.GONE
+                    serchbarId.visibility=View.GONE
+                }else{
+                    progressBarId.visibility=View.GONE
+                }
+            }
+        })
+    }
+
+
+    fun observeLiveDataResault(){
+        gameListesiViewModel.gamesResult.observe(viewLifecycleOwner, Observer { games->
+            games?.let {
+                gameListrcyclerview.visibility=View.VISIBLE
+                viewpagerId.visibility=View.VISIBLE
+                serchbarId.visibility=View.VISIBLE
+                recyclerGameAdapter.resaultGameListesiniGuncelle(it)
+            }
+        })
+
+
+        gameListesiViewModel.gamesResult.observe(viewLifecycleOwner, Observer { games->
+            games?.let {
+                gameListrcyclerview.visibility=View.VISIBLE
+                viewpagerId.visibility=View.VISIBLE
+                serchbarId.visibility=View.VISIBLE
+                recyclerGameAdapter.resaultGameListesiniGuncelle(it)
+            }
+        })
+
 
         gameListesiViewModel.hataMesaji.observe(viewLifecycleOwner, Observer { hata->
             hata?.let {
@@ -91,5 +148,8 @@ class GameListFragment : Fragment() {
                 }
             }
         })
+
+
+
     }
 }

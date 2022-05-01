@@ -49,6 +49,12 @@ class GameRecyclerAdapter(val gameListesi:ArrayList<Result>):RecyclerView.Adapte
         notifyDataSetChanged()
     }
 
+    fun resaultGameListesiniGuncelle(yeniBesinListesi:List<Result>){
+        gameListesi.clear()
+        gameListesi.addAll(yeniBesinListesi)
+        notifyDataSetChanged()
+    }
+
 
 
 }

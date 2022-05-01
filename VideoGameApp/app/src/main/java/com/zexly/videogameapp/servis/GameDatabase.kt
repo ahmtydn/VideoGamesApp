@@ -4,9 +4,9 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.zexly.videogameapp.model.GameDetailJSon
+import com.zexly.videogameapp.model.Result
 
-@Database(entities = arrayOf(GameDetailJSon::class), version = 1)
+@Database(entities = arrayOf(Result::class), version = 2)
 abstract class GameDatabase: RoomDatabase() {
 
     abstract fun gameDao():GameDAO
@@ -30,6 +30,6 @@ abstract class GameDatabase: RoomDatabase() {
         private fun databaseOlustur(context: Context)= Room.databaseBuilder(
             context.applicationContext,
             GameDatabase::class.java,
-            "gamedatabase").build()
+            "game2database").build()
     }
 }

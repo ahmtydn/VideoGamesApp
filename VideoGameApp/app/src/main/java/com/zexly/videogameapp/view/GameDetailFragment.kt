@@ -43,6 +43,7 @@ class GameDetailFragment : Fragment() {
         }
        viewModel=ViewModelProviders.of(this).get(GameDetailViewModel::class.java)
         viewModel.verileriInternettenAl(gameId)
+        //viewModel.verileriSQLitetanAl()
         observeLiveData(gameId)
     }
 

@@ -20,7 +20,7 @@ data class GameDetailJSon(
     @PrimaryKey
     @ColumnInfo(name="id")
     @SerializedName("id")
-    val id: Int,
+    var id: Int,
 
     @ColumnInfo(name="metacritic")
     @SerializedName("metacritic")
