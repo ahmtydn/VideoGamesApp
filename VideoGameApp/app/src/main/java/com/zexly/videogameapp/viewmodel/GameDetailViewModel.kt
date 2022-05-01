@@ -19,6 +19,7 @@ class GameDetailViewModel(application: Application):BaseViewModel(application) {
 
 
     val gamesDetail=MutableLiveData<GameDetailJSon>()
+    var favoriValue=MutableLiveData<List<Result>>()
 
     val detailhatamesajTV=MutableLiveData<Boolean>()
     val detailprogressBarId=MutableLiveData<Boolean>()
@@ -53,5 +54,15 @@ class GameDetailViewModel(application: Application):BaseViewModel(application) {
 
     }
 
+
+
+    fun sqLiteVeriDegistir(id:Int){
+        launch {
+            val dao= GameDatabase(getApplication()).gameDao()
+
+            dao.updateGames(id,1)
+
+        }
+    }
 
 }

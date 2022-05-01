@@ -27,11 +27,10 @@ class GameListViewModel(application: Application):BaseViewModel(application) {
     private val gameApiServis=GameAPIServis()
     private val disposable=CompositeDisposable()
 
-
-
     fun refreshData(){
 
         val kaydedilmeZamani=ozelSharedPreferences.zamaniAl()
+
         if (kaydedilmeZamani!=null && kaydedilmeZamani!=0L && System.nanoTime()-kaydedilmeZamani<guncellemeZamani){
             //SqLite'ten Çek
             verileriSQLitetanAl()
@@ -43,8 +42,6 @@ class GameListViewModel(application: Application):BaseViewModel(application) {
     }
 
 
-
-
     private fun verileriInternettenAl(){
         gameYukleniyor.value=true
         disposable.add(
@@ -53,7 +50,6 @@ class GameListViewModel(application: Application):BaseViewModel(application) {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeWith(object : DisposableSingleObserver<GamesJSON>(){
                 override fun onSuccess(t: GamesJSON) {
-                    gameView(t)
                     sqLiteSakla(t.results)
                     Toast.makeText(getApplication(),"Oyunları İnternetten Aldık",Toast.LENGTH_LONG).show()
                 }
@@ -64,13 +60,6 @@ class GameListViewModel(application: Application):BaseViewModel(application) {
 
             })
         )
-    }
-
-    private fun gameView(gameNesnesi:GamesJSON){
-        games.value=gameNesnesi
-        hataMesaji.value=false
-        gameYukleniyor.value=false
-
     }
 
 
@@ -90,21 +79,22 @@ class GameListViewModel(application: Application):BaseViewModel(application) {
         }
     }
 
-    fun sqLiteSakla(besinListesi:List<Result>){
+    fun sqLiteSakla(gameListesi:List<Result>){
         launch {
             val dao= GameDatabase(getApplication()).gameDao()
-            val uuidListesi=dao.insertAll(*besinListesi.toTypedArray())    // toTypedArray -> öğeleri tek tek gönderir
+            dao.deleteAllGame()
+            val uuidListesi=dao.insertAll(*gameListesi.toTypedArray())    // toTypedArray -> öğeleri tek tek gönderir
             var i=0
-            while (i<besinListesi.size)
+            while (i<gameListesi.size)
             {
-                besinListesi[i].uuid=uuidListesi[i].toInt()
+                gameListesi[i].uuid=uuidListesi[i].toInt()
+                println(gameListesi[i].uuid)
                 i=i+1
-                gamesGoster(besinListesi)
+                gamesGoster(gameListesi)
             }
-            println("SQLite saklama başarılı")
         }
 
+        ozelSharedPreferences.zamaniKaydet(System.nanoTime())
     }
-
 
 }

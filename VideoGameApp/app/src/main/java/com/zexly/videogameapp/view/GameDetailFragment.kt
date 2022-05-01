@@ -1,13 +1,12 @@
 package com.zexly.videogameapp.view
 
-import android.app.Activity
-import android.content.Context
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.zexly.videogameapp.R
@@ -41,13 +40,24 @@ class GameDetailFragment : Fragment() {
             gameId=GameDetailFragmentArgs.fromBundle(it).gameID
 
         }
+
+
+        fallowIBId.setOnClickListener {
+
+            viewModel.sqLiteVeriDegistir(gameId)
+            Toast.makeText(requireContext(),"Oyun,favorilere eklendi", Toast.LENGTH_LONG).show()
+        }
+
+
+
        viewModel=ViewModelProviders.of(this).get(GameDetailViewModel::class.java)
         viewModel.verileriInternettenAl(gameId)
-        //viewModel.verileriSQLitetanAl()
-        observeLiveData(gameId)
+
+
+        observeLiveData()
     }
 
-    fun observeLiveData(id:Int){
+    fun observeLiveData(){
 
         viewModel.gamesDetail.observe(viewLifecycleOwner, Observer { games->
             games?.let {

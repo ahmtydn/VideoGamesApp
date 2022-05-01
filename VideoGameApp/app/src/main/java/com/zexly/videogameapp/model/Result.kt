@@ -14,7 +14,7 @@ data class Result(
     val backgroundImage: String,
 
 
-    @ColumnInfo(name="description_raw")
+    @ColumnInfo(name="id")
     @SerializedName("id")
     var id: Int,
 
@@ -36,4 +36,5 @@ data class Result(
 ){
     @PrimaryKey(autoGenerate = true)
     var uuid:Int=0
+    var favori:Int=0
 }
