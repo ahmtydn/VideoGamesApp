@@ -13,27 +13,36 @@
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:layout_weight="2">
-
-    <ImageView
-        android:id="@+id/imageViewgamedetay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:srcCompat="@drawable/ic_launcher_background">
-
-    </ImageView>
-
     <ImageButton
+        android:translationZ="500dp"
         android:id="@+id/fallowIBId"
-        android:layout_width="50dp"
+        android:layout_width="80dp"
         android:layout_height="50dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:background="@android:color/transparent"
-        android:src="@drawable/ic_action_like"
-        tools:ignore="SpeakableTextPresentCheck">
+       android:background="@android:color/transparent"
 
+        style="@style/ShapeAppearanceOverlay.Material3.Button"
+        android:src="@drawable/ic_action_favorite"
+        tools:ignore="SpeakableTextPresentCheck">
     </ImageButton>
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#213EA5"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="22dp">
+
+            <ImageView
+                android:id="@+id/imageViewgamedetay"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_launcher_foreground"
+                />
+
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>
 
@@ -43,7 +52,6 @@
         android:layout_height="0dp"
         android:layout_weight="0.2"
         android:layout_marginStart="10dp"
-        android:text="Name Of Game"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/black"
@@ -55,7 +63,6 @@
         android:layout_weight="0.17"
         android:id="@+id/gameRelease"
         android:layout_marginStart="10dp"
-        android:text="Release Date"
         android:textSize="15sp"
         android:textStyle="normal"
         android:textColor="@color/gri"
@@ -67,7 +74,6 @@
         android:layout_height="0dp"
         android:layout_weight="0.2"
         android:layout_marginStart="10dp"
-        android:text="Metacritic Rate"
         android:id="@+id/gameMetacritic"
         android:textSize="15sp"
         android:textStyle="normal"
@@ -113,13 +119,12 @@
 
 
         <TextView
-            android:scrollbars = "vertical"
             android:id="@+id/gameDetailDescription"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
-            android:text="Game Description"
+            android:scrollbars="vertical"
             android:textColor="@color/gri"
             android:textSize="15sp"
             android:textStyle="normal">

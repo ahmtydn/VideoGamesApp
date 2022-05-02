@@ -45,7 +45,8 @@ class GameDetailFragment : Fragment() {
         fallowIBId.setOnClickListener {
 
             viewModel.sqLiteVeriDegistir(gameId)
-            Toast.makeText(requireContext(),"Oyun,favorilere eklendi", Toast.LENGTH_LONG).show()
+            val errorText="Oyun,favorilere eklendi"
+            Toast.makeText(requireContext(),errorText, Toast.LENGTH_SHORT).show()
         }
 
 
@@ -82,7 +83,7 @@ class GameDetailFragment : Fragment() {
                     gameIsım.visibility=View.GONE
                     gameRelease.visibility=View.GONE
                     gameMetacritic.visibility=View.GONE
-                    gameDetailDescription.visibility=View.GONE
+
                 }
                 else{
                     detailhatamesajTV.visibility=View.GONE
@@ -114,7 +115,6 @@ class GameDetailFragment : Fragment() {
                     gameIsım.visibility=View.VISIBLE
                     gameRelease.visibility=View.VISIBLE
                     gameMetacritic.visibility=View.VISIBLE
-                    gameDetailDescription.visibility=View.VISIBLE
                 }
 
             }

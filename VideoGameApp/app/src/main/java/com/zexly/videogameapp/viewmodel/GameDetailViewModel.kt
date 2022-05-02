@@ -39,7 +39,7 @@ class GameDetailViewModel(application: Application):BaseViewModel(application) {
                     override fun onError(e: Throwable) {
                         detailhatamesajTV.value=true
                         detailprogressBarId.value=false
-                        e.printStackTrace()
+                        println("Hata Mesaji${e.printStackTrace()}")
                     }
                 })
         )
@@ -57,9 +57,7 @@ class GameDetailViewModel(application: Application):BaseViewModel(application) {
     fun sqLiteVeriDegistir(id:Int){
         launch {
             val dao= GameDatabase(getApplication()).gameDao()
-
             dao.updateGames(id,1)
-
         }
     }
 

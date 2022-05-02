@@ -13,7 +13,7 @@
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainerView"
             android:name="androidx.navigation.fragment.NavHostFragment"
-            android:layout_weight="0.92"
+            android:layout_weight="0.94"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:defaultNavHost="true"
@@ -22,7 +22,7 @@
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:layout_weight="0.08"
+        android:layout_weight="0.06"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:labelVisibilityMode="unlabeled"

@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.game_list_recycler_row.view.*
 
 class GameRecyclerAdapter(val gameListesi:ArrayList<Result>):RecyclerView.Adapter<GameRecyclerAdapter.GameViewHolder>() {
 
+
     class GameViewHolder(itemView:View):RecyclerView.ViewHolder(itemView){
 
     }
@@ -28,10 +29,12 @@ class GameRecyclerAdapter(val gameListesi:ArrayList<Result>):RecyclerView.Adapte
 
     override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
         holder.itemView.gameisim.text=gameListesi.get(position).name
-        holder.itemView.gameRankedRlsd.text=gameListesi.get(position).released
+        val Rlsd=gameListesi.get(position).released
+        val gameRanked=gameListesi.get(position).rating
+        val gameRankedRlsd=Rlsd+"-("+gameRanked+")"
+        holder.itemView.gameRankedRlsd.text=gameRankedRlsd
+
         holder.itemView.imageID.gorselIndir(gameListesi.get(position).backgroundImage,placeholderYap(holder.itemView.context))
-
-
 
         holder.itemView.setOnClickListener {
             val action=GameListFragmentDirections.actionGameListFragmentToGameDetailFragment2(gameListesi.get(position).id)

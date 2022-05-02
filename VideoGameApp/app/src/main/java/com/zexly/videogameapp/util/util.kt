@@ -1,8 +1,10 @@
 package com.zexly.videogameapp.util
 
 import android.content.Context
+import android.os.Handler
 import android.widget.ImageView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
+import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.zexly.videogameapp.R
@@ -18,4 +20,5 @@ fun placeholderYap(context: Context): CircularProgressDrawable {
         centerRadius=40f
         start()
     }
+
 }

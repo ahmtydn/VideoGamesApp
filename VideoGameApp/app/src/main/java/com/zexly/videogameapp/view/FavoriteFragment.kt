@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zexly.videogameapp.R
 import com.zexly.videogameapp.adapter.GameFavoriRecyclerAdapter
-import com.zexly.videogameapp.adapter.GameRecyclerAdapter
 import com.zexly.videogameapp.viewmodel.FavoriViewModel
 import com.zexly.videogameapp.viewmodel.GameListViewModel
 import kotlinx.android.synthetic.main.fragment_favorite.*
@@ -18,15 +17,9 @@ import kotlinx.android.synthetic.main.fragment_game_list.*
 
 class FavoriteFragment : Fragment() {
 
-    //favoriRecyclerView
 
     private lateinit var favoriViewModel: FavoriViewModel
     private val favoriGameAdapter= GameFavoriRecyclerAdapter(arrayListOf())
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,7 +36,6 @@ class FavoriteFragment : Fragment() {
         favoriViewModel.sqLiteVeriGetir()
         favoriRecyclerView.layoutManager= LinearLayoutManager(context)
         favoriRecyclerView.adapter=favoriGameAdapter
-
         observeLiveData()
 
     }

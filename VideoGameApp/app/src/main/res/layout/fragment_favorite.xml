@@ -13,7 +13,7 @@
         android:layout_height="0dp"
         android:layout_weight="0.06"
         android:background="@color/gri"
-        android:text="Favori Oyunlar"
+        android:text="Favorite Games"
         android:textColor="#104DB5"
         android:gravity="center"
         android:textStyle="bold"

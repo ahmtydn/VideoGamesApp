@@ -13,6 +13,7 @@ import com.zexly.videogameapp.util.placeholderYap
 import com.zexly.videogameapp.view.FavoriteFragment
 import com.zexly.videogameapp.view.FavoriteFragmentDirections
 import com.zexly.videogameapp.view.GameListFragmentDirections
+import kotlinx.android.synthetic.main.favorite_recycler_row.view.*
 import kotlinx.android.synthetic.main.game_list_recycler_row.view.*
 
 class GameFavoriRecyclerAdapter(val gameListesi:ArrayList<Result>): RecyclerView.Adapter<GameFavoriRecyclerAdapter.GameViewHolder>() {
@@ -23,14 +24,14 @@ class GameFavoriRecyclerAdapter(val gameListesi:ArrayList<Result>): RecyclerView
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
         val inflater= LayoutInflater.from(parent.context)
-        val view=inflater.inflate(R.layout.game_list_recycler_row,parent,false)
-        return GameFavoriRecyclerAdapter.GameViewHolder(view)
+        val view=inflater.inflate(R.layout.favorite_recycler_row,parent,false)
+        return GameViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
-        holder.itemView.gameisim.text=gameListesi.get(position).name
-        holder.itemView.gameRankedRlsd.text=gameListesi.get(position).released
-        holder.itemView.imageID.gorselIndir(gameListesi.get(position).backgroundImage,
+        holder.itemView.favoritegamename.text=gameListesi.get(position).name
+        holder.itemView.favoritegameRankedRlsd.text=gameListesi.get(position).released
+        holder.itemView.favoriteimageID.gorselIndir(gameListesi.get(position).backgroundImage,
             placeholderYap(holder.itemView.context)
         )
         holder.itemView.setOnClickListener {

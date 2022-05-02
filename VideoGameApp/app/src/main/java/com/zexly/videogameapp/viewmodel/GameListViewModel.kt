@@ -17,6 +17,7 @@ import kotlinx.coroutines.launch
 
 class GameListViewModel(application: Application):BaseViewModel(application) {
     val gamesResult=MutableLiveData<List<Result>>()
+    val gamesResultPager=MutableLiveData<List<Result>>()
     private val guncellemeZamani=10*60*1000*1000*1000L
     private val ozelSharedPreferences= OzelSharedPreferences(getApplication())
 
@@ -28,7 +29,9 @@ class GameListViewModel(application: Application):BaseViewModel(application) {
 
     fun refreshData(){
 
+
         val kaydedilmeZamani=ozelSharedPreferences.zamaniAl()
+        println(kaydedilmeZamani)
 
         if (kaydedilmeZamani!=null && kaydedilmeZamani!=0L && System.nanoTime()-kaydedilmeZamani<guncellemeZamani){
             //SqLite'ten Çek
@@ -40,9 +43,9 @@ class GameListViewModel(application: Application):BaseViewModel(application) {
         }
     }
 
-
     private fun verileriInternettenAl(){
         gameYukleniyor.value=true
+
         disposable.add(
         gameApiServis.getData()
             .subscribeOn(Schedulers.newThread())
@@ -50,7 +53,8 @@ class GameListViewModel(application: Application):BaseViewModel(application) {
             .subscribeWith(object : DisposableSingleObserver<GamesJSON>(){
                 override fun onSuccess(t: GamesJSON) {
                     sqLiteSakla(t.results)
-                    Toast.makeText(getApplication(),"Oyunları İnternetten Aldık",Toast.LENGTH_LONG).show()
+                    gamesGoster(t.results)
+                   // Toast.makeText(getApplication(),"Oyunları İnternetten Aldık",Toast.LENGTH_SHORT).show()
                 }
                 override fun onError(e: Throwable) {
                     hataMesaji.value=true
@@ -60,10 +64,14 @@ class GameListViewModel(application: Application):BaseViewModel(application) {
             })
         )
     }
-
-
     private fun gamesGoster(gamesListesi:List<Result>){
-        gamesResult.value=gamesListesi
+
+        val gamePagerList=gamesListesi.subList(0,3)
+        val gameRecyclerList=gamesListesi.subList(3,gamesListesi.size)
+
+        gamesResult.value=gameRecyclerList
+        gamesResultPager.value=gamePagerList
+
         hataMesaji.value=false
         gameYukleniyor.value=false
     }
@@ -74,7 +82,7 @@ class GameListViewModel(application: Application):BaseViewModel(application) {
         launch {
             val gameListesi= GameDatabase(getApplication()).gameDao().getAllGame()
             gamesGoster(gameListesi)
-            Toast.makeText(getApplication(),"Oyunları Roomdan Aldık", Toast.LENGTH_LONG).show()
+            //Toast.makeText(getApplication(),"Oyunları Roomdan Aldık", Toast.LENGTH_SHORT).show()
         }
     }
 
