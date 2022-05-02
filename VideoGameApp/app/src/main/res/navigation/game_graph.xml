@@ -9,26 +9,26 @@
         android:name="com.zexly.videogameapp.view.GameListFragment"
         android:label="fragment_game_list"
         tools:layout="@layout/fragment_game_list" >
-        <action
-            android:id="@+id/action_gameListFragment_to_gameDetailFragment2"
-            app:destination="@id/gameDetailFragment2" />
         <argument
             android:name="gameID"
             app:argType="integer"
             android:defaultValue="0" />
+        <action
+            android:id="@+id/action_gameListFragment_to_gameDetailFragment2"
+            app:destination="@id/gameDetailFragment2" />
     </fragment>
     <fragment
         android:id="@+id/gameDetailFragment2"
         android:name="com.zexly.videogameapp.view.GameDetailFragment"
         android:label="fragment_game_detail"
         tools:layout="@layout/fragment_game_detail" >
-        <action
-            android:id="@+id/action_gameDetailFragment2_to_gameListFragment"
-            app:destination="@id/gameListFragment" />
         <argument
             android:name="gameID"
             app:argType="integer"
             android:defaultValue="0" />
+        <action
+            android:id="@+id/action_gameDetailFragment2_to_gameListFragment"
+            app:destination="@id/gameListFragment" />
         <action
             android:id="@+id/action_gameDetailFragment2_to_favoriteFragment"
             app:destination="@id/favoriteFragment" />

@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/home"
+        android:id="@+id/gameListFragment"
         android:title=""
         android:icon="@drawable/ic_action_home"/>
     <item
         android:title=""
-        android:id="@+id/favorite"
+        android:id="@+id/favoriteFragment"
         android:icon="@drawable/ic_action_favorite"/>
 
 </menu>

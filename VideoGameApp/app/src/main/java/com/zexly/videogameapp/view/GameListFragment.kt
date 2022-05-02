@@ -5,17 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.viewpager.widget.ViewPager
 import com.zexly.videogameapp.R
 import com.zexly.videogameapp.adapter.GameRecyclerAdapter
 import com.zexly.videogameapp.adapter.ViewPagerAdapter
 import com.zexly.videogameapp.viewmodel.GameListViewModel
-import kotlinx.android.synthetic.main.card_item.*
+import com.zexly.videogameapp.viewmodel.ViewPagerViewModel
 import kotlinx.android.synthetic.main.fragment_game_list.*
 
 
@@ -23,6 +20,8 @@ class GameListFragment : Fragment() {
 
 
     private lateinit var gameListesiViewModel:GameListViewModel
+    private lateinit var pagerListeViewModel:ViewPagerViewModel
+
     private val recyclerGameAdapter=GameRecyclerAdapter(arrayListOf())
 //    private  val pagerAdapter= ViewPagerAdapter(requireContext(), arrayListOf())
 
@@ -42,8 +41,6 @@ class GameListFragment : Fragment() {
 
     }
 
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -51,12 +48,14 @@ class GameListFragment : Fragment() {
         gameListesiViewModel.refreshData()
 
 
+        pagerListeViewModel=ViewModelProviders.of(this).get(ViewPagerViewModel::class.java)
+        pagerListeViewModel.verileriSQLitetanAl()
+        //viewpagerId.adapter= pagerAdapter
 
         gameListrcyclerview.layoutManager=LinearLayoutManager(context)
         gameListrcyclerview.adapter=recyclerGameAdapter
-       /*
-        viewpagerId.adapter= pagerAdapter
-        viewpagerId.setPadding(100,0,100,0 )*/
+
+        //viewpagerId.setPadding(100,0,100,0 )
 
 
         observeLiveDataResault()
@@ -72,6 +71,15 @@ class GameListFragment : Fragment() {
                 recyclerGameAdapter.resaultGameListesiniGuncelle(it)
             }
         })
+
+       /* pagerListeViewModel.gamesResult.observe(viewLifecycleOwner, Observer { games->
+            games?.let {
+                gameListrcyclerview.visibility=View.VISIBLE
+                viewpagerId.visibility=View.VISIBLE
+                serchbarId.visibility=View.VISIBLE
+                pagerAdapter.resaultGameListesiniGuncelle(it)
+            }
+        })*/
 
 
         gameListesiViewModel.gamesResult.observe(viewLifecycleOwner, Observer { games->

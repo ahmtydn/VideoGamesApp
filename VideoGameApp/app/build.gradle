@@ -9,6 +9,8 @@ plugins {
 android {
     compileSdk 32
 
+    buildFeatures{ viewBinding true }
+
     defaultConfig {
         applicationId "com.zexly.videogameapp"
         minSdk 21

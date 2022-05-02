@@ -40,4 +40,10 @@ class ViewPagerAdapter( val context: Context, val pagerArrayList:ArrayList<Resul
         container.removeView(`object`as View)
     }
 
+    fun resaultGameListesiniGuncelle(yeniGameListesi:List<Result>){
+        pagerArrayList.clear()
+        pagerArrayList.addAll(yeniGameListesi)
+        notifyDataSetChanged()
+    }
+
 }
