@@ -39,9 +39,10 @@ class GameDetailFragment : Fragment() {
         }
         viewModel=ViewModelProviders.of(this).get(GameDetailViewModel::class.java)
         viewModel.verileriInternettenAl(gameId)
-        viewModel.sqLiteDataControl(gameId)
-        fallowIBId.setOnClickListener {
 
+
+        fallowIBId.setOnClickListener {
+            viewModel.sqLiteDataControl(gameId)
             viewModel.fid.observe(viewLifecycleOwner, Observer { fid->
                 fid?.let {
                     if (it.favori==0){
@@ -58,7 +59,7 @@ class GameDetailFragment : Fragment() {
 
         }
 
-
+        viewModel.sqLiteDataControl(gameId)
 
         observeLiveData()
     }
