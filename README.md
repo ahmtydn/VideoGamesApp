@@ -17,7 +17,7 @@ Retrofit
 
 LiveData
 
-VewModel
+ViewModel
 
 RxJava
 
