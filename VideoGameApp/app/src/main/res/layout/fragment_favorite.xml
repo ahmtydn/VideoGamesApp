@@ -9,12 +9,17 @@
     android:weightSum="1">
 
     <TextView
+        android:background="@drawable/search_style"
+        android:submitBackground="@drawable/search_style"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.06"
-        android:background="@color/gri"
         android:text="Favorite Games"
-        android:textColor="#104DB5"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:textColor="#0B0B0B"
         android:gravity="center"
         android:textStyle="bold"
         android:textSize="20dp"

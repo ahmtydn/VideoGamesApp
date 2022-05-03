@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import com.zexly.videogameapp.model.Result
-import java.util.concurrent.Flow
+
 
 @Dao
 interface GameDAO {
@@ -21,6 +21,9 @@ interface GameDAO {
 
     @Query("SELECT * FROM result WHERE favori=:fid")
     suspend fun getFavoriGames(fid:Int):List<Result>
+
+    @Query("SELECT * FROM result WHERE id=:id")
+    suspend fun getGamesFid(id: Int):Result
 
 
     @Query("UPDATE result SET favori = :fid WHERE id = :id")

@@ -21,9 +21,6 @@ import kotlinx.android.synthetic.main.game_list_recycler_row.view.*
 class GameDetailFragment : Fragment() {
     private lateinit var viewModel:GameDetailViewModel
     private var gameId=0
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,19 +37,27 @@ class GameDetailFragment : Fragment() {
             gameId=GameDetailFragmentArgs.fromBundle(it).gameID
 
         }
-
-
+        viewModel=ViewModelProviders.of(this).get(GameDetailViewModel::class.java)
+        viewModel.verileriInternettenAl(gameId)
+        viewModel.sqLiteDataControl(gameId)
         fallowIBId.setOnClickListener {
 
-            viewModel.sqLiteVeriDegistir(gameId)
-            val errorText="Oyun,favorilere eklendi"
-            Toast.makeText(requireContext(),errorText, Toast.LENGTH_SHORT).show()
+            viewModel.fid.observe(viewLifecycleOwner, Observer { fid->
+                fid?.let {
+                    if (it.favori==0){
+
+                        viewModel.sqLiteVeriDegistir(gameId,1)
+                        fallowIBId.setImageResource(R.drawable.ic_action_favorite)
+                    }else {
+
+                        viewModel.sqLiteVeriDegistir(gameId,0)
+                        fallowIBId.setImageResource(R.drawable.ic_action_not_favorite)
+                    }
+                }
+            })
+
         }
 
-
-
-       viewModel=ViewModelProviders.of(this).get(GameDetailViewModel::class.java)
-        viewModel.verileriInternettenAl(gameId)
 
 
         observeLiveData()
@@ -68,6 +73,17 @@ class GameDetailFragment : Fragment() {
                 gameMetacritic.text=it.metacritic.toString()
                 gameRelease.text=it.released
                 imageViewgamedetay.gorselIndir(games.backgroundImage, placeholderYap(requireContext()))
+            }
+        })
+
+        viewModel.fid.observe(viewLifecycleOwner, Observer { fid->
+            fid?.let {
+                if (it.favori==0){
+                    fallowIBId.setImageResource(R.drawable.ic_action_not_favorite)
+
+                }else{
+                    fallowIBId.setImageResource(R.drawable.ic_action_favorite)
+                }
             }
         })
 

@@ -13,14 +13,18 @@
         <entry key="..\:/Users/ahmet/AndroidStudioProjects/VideoGameApp/app/src/main/res/layout/game_recycler_row.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/ahmet/AndroidStudioProjects/VideoGameApp/app/src/main/res/menu/bottom_nav.xml" value="0.33" />
         <entry key="..\:/Users/ahmet/Documents/GitHub/VideoGamesApp/VideoGameApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3675" />
+        <entry key="..\:/Users/ahmet/Documents/GitHub/VideoGamesApp/VideoGameApp/app/src/main/res/drawable/action_bar_style.xml" value="0.2935" />
+        <entry key="..\:/Users/ahmet/Documents/GitHub/VideoGamesApp/VideoGameApp/app/src/main/res/drawable/card_item_style.xml" value="0.2935" />
         <entry key="..\:/Users/ahmet/Documents/GitHub/VideoGamesApp/VideoGameApp/app/src/main/res/drawable/favoriteWhite_background.xml" value="0.3525" />
         <entry key="..\:/Users/ahmet/Documents/GitHub/VideoGamesApp/VideoGameApp/app/src/main/res/drawable/favoriteWhite_foreground.xml" value="0.3525" />
         <entry key="..\:/Users/ahmet/Documents/GitHub/VideoGamesApp/VideoGameApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3675" />
+        <entry key="..\:/Users/ahmet/Documents/GitHub/VideoGamesApp/VideoGameApp/app/src/main/res/drawable/search_bg.xml" value="0.1735" />
+        <entry key="..\:/Users/ahmet/Documents/GitHub/VideoGamesApp/VideoGameApp/app/src/main/res/drawable/zexly_style.xml" value="0.2935" />
         <entry key="..\:/Users/ahmet/Documents/GitHub/VideoGamesApp/VideoGameApp/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/ahmet/Documents/GitHub/VideoGamesApp/VideoGameApp/app/src/main/res/layout/card_item.xml" value="0.25" />
         <entry key="..\:/Users/ahmet/Documents/GitHub/VideoGamesApp/VideoGameApp/app/src/main/res/layout/favorite_recycler_row.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/ahmet/Documents/GitHub/VideoGamesApp/VideoGameApp/app/src/main/res/layout/fragment_favorite.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/ahmet/Documents/GitHub/VideoGamesApp/VideoGameApp/app/src/main/res/layout/fragment_game_detail.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/ahmet/Documents/GitHub/VideoGamesApp/VideoGameApp/app/src/main/res/layout/fragment_game_detail.xml" value="0.25" />
         <entry key="..\:/Users/ahmet/Documents/GitHub/VideoGamesApp/VideoGameApp/app/src/main/res/layout/fragment_game_list.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/ahmet/Documents/GitHub/VideoGamesApp/VideoGameApp/app/src/main/res/layout/game_detail_rcycler_row.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/ahmet/Documents/GitHub/VideoGamesApp/VideoGameApp/app/src/main/res/layout/game_list_recycler_row.xml" value="0.36666666666666664" />

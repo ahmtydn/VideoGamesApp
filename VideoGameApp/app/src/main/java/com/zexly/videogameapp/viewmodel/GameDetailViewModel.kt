@@ -18,6 +18,7 @@ import kotlinx.coroutines.launch
 class GameDetailViewModel(application: Application):BaseViewModel(application) {
 
     val gamesDetail=MutableLiveData<GameDetailJSon>()
+    val fid=MutableLiveData<Result>()
 
     val detailhatamesajTV=MutableLiveData<Boolean>()
     val detailprogressBarId=MutableLiveData<Boolean>()
@@ -39,7 +40,6 @@ class GameDetailViewModel(application: Application):BaseViewModel(application) {
                     override fun onError(e: Throwable) {
                         detailhatamesajTV.value=true
                         detailprogressBarId.value=false
-                        println("Hata Mesaji${e.printStackTrace()}")
                     }
                 })
         )
@@ -53,11 +53,17 @@ class GameDetailViewModel(application: Application):BaseViewModel(application) {
     }
 
 
-
-    fun sqLiteVeriDegistir(id:Int){
+    fun sqLiteVeriDegistir(id:Int,fid:Int){
         launch {
             val dao= GameDatabase(getApplication()).gameDao()
-            dao.updateGames(id,1)
+            dao.updateGames(id,fid)
+        }
+    }
+    fun sqLiteDataControl(id:Int){
+
+        launch {
+            val dao= GameDatabase(getApplication()).gameDao()
+            fid.value=dao.getGamesFid(id)
         }
     }
 

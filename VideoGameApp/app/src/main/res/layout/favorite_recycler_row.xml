@@ -21,6 +21,8 @@
             android:orientation="vertical">
 
             <ImageView
+                android:background="@drawable/search_style"
+                android:submitBackground="@drawable/search_style"
                 app:cardCornerRadius="22dp"
                 android:id="@+id/favoriteimageID"
                 android:layout_width="match_parent"
