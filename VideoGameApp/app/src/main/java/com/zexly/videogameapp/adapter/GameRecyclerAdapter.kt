@@ -33,7 +33,6 @@ class GameRecyclerAdapter(val gameListesi:ArrayList<Result>):RecyclerView.Adapte
         val gameRanked=gameListesi.get(position).rating
         val gameRankedRlsd=Rlsd+"-("+gameRanked+")"
         holder.itemView.gameRankedRlsd.text=gameRankedRlsd
-
         holder.itemView.imageID.gorselIndir(gameListesi.get(position).backgroundImage,placeholderYap(holder.itemView.context))
 
         holder.itemView.setOnClickListener {

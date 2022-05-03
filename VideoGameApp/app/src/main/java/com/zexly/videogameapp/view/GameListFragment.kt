@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.ViewPager
@@ -37,7 +37,6 @@ class GameListFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_game_list, container, false)
 
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -49,15 +48,17 @@ class GameListFragment : Fragment() {
         gameListrcyclerview.adapter=recyclerGameAdapter
 
         viewpagerId.adapter= pagerAdapter
-        viewpagerId.setCurrentItem(1, true);
+        viewpagerId.setCurrentItem(1, true)
 
         viewpagerId.autoScroll(3000)
         viewpagerId.setPadding(100,0,100,0 )
 
         observeLiveDataResault()
+        search()
+
     }
 
-    fun ViewPager.autoScroll(interval: Long) {
+   private fun ViewPager.autoScroll(interval: Long) {
 
         val handler = Handler()
         var scrollPosition = 0
@@ -96,56 +97,108 @@ class GameListFragment : Fragment() {
 
 
     fun observeLiveDataResault(){
-        gameListesiViewModel.gamesResult.observe(viewLifecycleOwner, Observer { games->
+        gameListesiViewModel.gamesResult.observe(viewLifecycleOwner) { games ->
             games?.let {
-                gameListrcyclerview.visibility=View.VISIBLE
-                viewpagerId.visibility=View.VISIBLE
-                serchbarId.visibility=View.VISIBLE
+                gameListrcyclerview.visibility = View.VISIBLE
+                viewpagerId.visibility = View.VISIBLE
+                serchbarId.visibility = View.VISIBLE
                 recyclerGameAdapter.resaultGameListesiniGuncelle(it)
 
 
             }
-        })
-            gameListesiViewModel.gamesResultPager.observe(viewLifecycleOwner, Observer { games->
-                games?.let {
-                    gameListrcyclerview.visibility=View.VISIBLE
-                    viewpagerId.visibility=View.VISIBLE
-                    serchbarId.visibility=View.VISIBLE
-                    pagerAdapter.resaultGameListesiniGuncelle(it)
-                }
-            })
+        }
+        gameListesiViewModel.gamesResultPager.observe(viewLifecycleOwner) { games ->
+            games?.let {
+                gameListrcyclerview.visibility = View.VISIBLE
+                viewpagerId.visibility = View.VISIBLE
+                serchbarId.visibility = View.VISIBLE
+                pagerAdapter.resaultGameListesiniGuncelle(it)
+            }
+        }
 
-        gameListesiViewModel.hataMesaji.observe(viewLifecycleOwner, Observer { hata->
+        gameListesiViewModel.hataMesaji.observe(viewLifecycleOwner) { hata ->
             hata?.let {
 
-                if (it)
-                {
-                    hatamesajTV.visibility=View.VISIBLE
-                    gameListrcyclerview.visibility=View.GONE
-                    progressBarId.visibility=View.GONE
-                    viewpagerId.visibility=View.GONE
-                    serchbarId.visibility=View.GONE
-                }
-                else{
-                    hatamesajTV.visibility=View.GONE
+                if (it) {
+                    hatamesajTV.visibility = View.VISIBLE
+                    gameListrcyclerview.visibility = View.GONE
+                    progressBarId.visibility = View.GONE
+                    viewpagerId.visibility = View.GONE
+                    serchbarId.visibility = View.GONE
+                } else {
+                    hatamesajTV.visibility = View.GONE
                 }
             }
-        })
+        }
 
-        gameListesiViewModel.gameYukleniyor.observe(viewLifecycleOwner, Observer { yukleniyor->
+        gameListesiViewModel.gameYukleniyor.observe(viewLifecycleOwner) { yukleniyor ->
 
             yukleniyor?.let {
-                if (it){
-                    gameListrcyclerview.visibility=View.GONE
-                    hatamesajTV.visibility=View.GONE
-                    progressBarId.visibility=View.VISIBLE
-                    viewpagerId.visibility=View.GONE
-                    serchbarId.visibility=View.GONE
-                }else{
-                    progressBarId.visibility=View.GONE
+                if (it) {
+                    gameListrcyclerview.visibility = View.GONE
+                    hatamesajTV.visibility = View.GONE
+                    progressBarId.visibility = View.VISIBLE
+                    viewpagerId.visibility = View.GONE
+                    serchbarId.visibility = View.GONE
+                } else {
+                    progressBarId.visibility = View.GONE
                 }
+            }
+        }
+
+    }
+
+    fun search(){
+
+        serchbarId.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            android.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (query!=null){
+                    searchKontrol(query)
+                }
+                return true
+            }
+
+            override fun onQueryTextChange(query: String?): Boolean {
+                if (query!=null){
+                    searchKontrol(query)
+                }
+                return true
             }
         })
 
+    }
+    private fun searchKontrol(query: String){
+        if (query.length>2){
+            searchDatabase(query)
+        }else {
+            viewpagerId.visibility = View.VISIBLE
+            observeLiveDataResault()
+        }
+
+    }
+
+    private fun searchDatabase(query: String?){
+        val searcQuery="%$query%"
+
+        gameListesiViewModel.searchDatabase(searcQuery)
+
+        gameListesiViewModel.searchResult.observe(viewLifecycleOwner) { games ->
+            games?.let {
+                gameListrcyclerview.visibility = View.VISIBLE
+                viewpagerId.visibility = View.GONE
+                serchbarId.visibility = View.VISIBLE
+                hatamesajTV.visibility = View.GONE
+                hatamesajTV.text="Hata oluştu!"
+                recyclerGameAdapter.resaultGameListesiniGuncelle(it)
+                if (it.isEmpty()){
+                    hatamesajTV.text="Aradığınız sonuç bulunamadı!"
+                    hatamesajTV.visibility=View.VISIBLE
+                    gameListrcyclerview.visibility = View.GONE
+                    viewpagerId.visibility = View.GONE
+                    recyclerGameAdapter.resaultGameListesiniGuncelle(it)
+                }
+            }
+        }
     }
 }

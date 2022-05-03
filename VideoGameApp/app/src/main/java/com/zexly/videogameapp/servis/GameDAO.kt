@@ -4,14 +4,13 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import com.zexly.videogameapp.model.Result
+import java.util.concurrent.Flow
 
 @Dao
 interface GameDAO {
 
     @Insert
     suspend fun insertAll(vararg result:Result):List<Long>
-
-
 
 
     @Query("SELECT * FROM result")
@@ -26,5 +25,8 @@ interface GameDAO {
 
     @Query("UPDATE result SET favori = :fid WHERE id = :id")
     suspend fun updateGames(id:Int, fid:Int)
+
+    @Query("SELECT*FROM result WHERE name LIKE:searchQuery")
+    suspend fun searchDatabase(searchQuery: String):List<Result>
 
 }

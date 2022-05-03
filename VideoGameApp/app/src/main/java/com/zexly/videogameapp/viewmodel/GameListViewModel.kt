@@ -2,7 +2,6 @@ package com.zexly.videogameapp.viewmodel
 
 
 import android.app.Application
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.zexly.videogameapp.model.GamesJSON
 import com.zexly.videogameapp.model.Result
@@ -16,7 +15,9 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.launch
 
 class GameListViewModel(application: Application):BaseViewModel(application) {
+
     val gamesResult=MutableLiveData<List<Result>>()
+    val searchResult=MutableLiveData<List<Result>>()
     val gamesResultPager=MutableLiveData<List<Result>>()
     private val guncellemeZamani=10*60*1000*1000*1000L
     private val ozelSharedPreferences= OzelSharedPreferences(getApplication())
@@ -27,14 +28,13 @@ class GameListViewModel(application: Application):BaseViewModel(application) {
     private val gameApiServis=GameAPIServis()
     private val disposable=CompositeDisposable()
 
+
     fun refreshData(){
 
 
         val kaydedilmeZamani=ozelSharedPreferences.zamaniAl()
-        println(kaydedilmeZamani)
-
         if (kaydedilmeZamani!=null && kaydedilmeZamani!=0L && System.nanoTime()-kaydedilmeZamani<guncellemeZamani){
-            //SqLite'ten Çek
+
             verileriSQLitetanAl()
         }
         else
@@ -54,7 +54,6 @@ class GameListViewModel(application: Application):BaseViewModel(application) {
                 override fun onSuccess(t: GamesJSON) {
                     sqLiteSakla(t.results)
                     gamesGoster(t.results)
-                   // Toast.makeText(getApplication(),"Oyunları İnternetten Aldık",Toast.LENGTH_SHORT).show()
                 }
                 override fun onError(e: Throwable) {
                     hataMesaji.value=true
@@ -76,13 +75,21 @@ class GameListViewModel(application: Application):BaseViewModel(application) {
         gameYukleniyor.value=false
     }
 
+
+    fun searchDatabase(searchQuery: String){
+        launch {
+            val gameListesi= GameDatabase(getApplication()).gameDao().searchDatabase(searchQuery)
+            searchResult.value=gameListesi
+
+        }
+    }
+
     fun verileriSQLitetanAl(){
 
         gameYukleniyor.value=true
         launch {
             val gameListesi= GameDatabase(getApplication()).gameDao().getAllGame()
             gamesGoster(gameListesi)
-            //Toast.makeText(getApplication(),"Oyunları Roomdan Aldık", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -99,8 +106,6 @@ class GameListViewModel(application: Application):BaseViewModel(application) {
                 gamesGoster(gameListesi)
             }
         }
-
-
         ozelSharedPreferences.zamaniKaydet(System.nanoTime())
     }
 
